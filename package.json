@@ -1,0 +1,12 @@
+{
+  "name": "hero-music-live",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "tiktok-live-connector": "2.5.0",
+    "ws": "8.18.2"
+  }
+}
