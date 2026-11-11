@@ -30,7 +30,7 @@
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *,*::before,*::after{box-sizing:border-box}
-html,body{height:100%;margin:0;background:var(--ink);color:var(--text);font-family:var(--body);overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+html,body{height:100%;width:100%;max-width:100%;overflow-x:hidden;margin:0;touch-action:manipulation;background:var(--ink);color:var(--text);font-family:var(--body);overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
 #gl{position:fixed;inset:0;width:100%;height:100%;display:block}
 .glass{background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(1.8);backdrop-filter:blur(18px) saturate(1.8);border:1px solid var(--edge);box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 12px 36px rgba(0,0,0,.4)}
 
@@ -53,6 +53,10 @@ html,body{height:100%;margin:0;background:var(--ink);color:var(--text);font-fami
 .chip-s svg{width:13px;height:13px}
 .chip-s .bar{width:56px;height:3px;border-radius:3px;background:rgba(255,255,255,.14);overflow:hidden}
 .chip-s .bar i{display:block;height:100%;width:0;background:var(--prism)}
+.howto{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-size:13.5px;font-weight:600;max-width:92vw;
+  background:linear-gradient(90deg,rgba(255,77,216,.28),rgba(77,184,255,.28));-webkit-backdrop-filter:blur(16px) saturate(1.8);backdrop-filter:blur(16px) saturate(1.8);border:1px solid rgba(255,255,255,.28);box-shadow:0 0 22px rgba(255,77,216,.3)}
+.howto svg{flex:none;width:15px;height:15px}
+.howto span{display:inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* combo grande sopra la pista */
 #combo{position:fixed;left:0;right:0;text-align:center;pointer-events:none;opacity:0;transition:opacity .4s}
@@ -102,7 +106,7 @@ html,body{height:100%;margin:0;background:var(--ink);color:var(--text);font-fami
 #cat .earL{transform-origin:76px 50px}
 #cat.twitch .earL{animation:twitch .35s ease-in-out}
 @keyframes twitch{40%{transform:rotate(-12deg)}}
-#bubble{position:fixed;right:calc(clamp(84px,22vw,120px) + 10px + env(safe-area-inset-right,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));max-width:min(62vw,280px);padding:11px 14px;border-radius:18px 18px 4px 18px;
+#bubble{position:fixed;right:calc(clamp(84px,22vw,120px) + 10px + env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));max-width:min(62vw,280px);padding:11px 14px;border-radius:18px 18px 4px 18px;
   font-size:14px;font-weight:500;line-height:1.35;pointer-events:none;opacity:0;transform:translateY(8px) scale(.96);transform-origin:100% 100%;transition:opacity .25s, transform .3s cubic-bezier(.3,1.4,.5,1);z-index:3}
 #bubble.on{opacity:1;transform:none}
 #bubble b{font-weight:700;color:#fff}
@@ -129,9 +133,9 @@ html,body{height:100%;margin:0;background:var(--ink);color:var(--text);font-fami
 .gear{position:fixed;left:calc(12px + env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9;width:44px;height:44px;border-radius:50%;color:var(--text);display:grid;place-items:center;cursor:pointer;transition:opacity .5s;padding:0}
 .gear.idle{opacity:0}
 .gear svg{width:22px;height:22px}
-#panel{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translate(-50%,calc(100% + 30px));z-index:10;width:min(540px,calc(100vw - 20px));max-height:74vh;overflow:auto;
+#panel{position:fixed;left:10px;right:10px;margin:0 auto;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateY(calc(100% + 30px));z-index:10;max-width:540px;max-height:74vh;overflow:auto;
   padding:18px 18px 16px;border-radius:28px;background:rgba(14,7,32,.86);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);border:1px solid var(--edge);box-shadow:0 30px 80px rgba(0,0,0,.6);transition:transform .4s cubic-bezier(.2,.9,.25,1)}
-#panel.open{transform:translate(-50%,0)}
+#panel.open{transform:none}
 #panel h2{font-family:var(--display);font-weight:700;font-size:18px;margin:0}
 #panel h3{font-size:13px;font-weight:600;margin:16px 0 8px;color:var(--muted)}
 #panel .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -140,7 +144,7 @@ html,body{height:100%;margin:0;background:var(--ink);color:var(--text);font-fami
 .chip.on{background:#fff;color:#140a22;border-color:#fff}
 .chip.gold{border-color:rgba(255,207,92,.6);color:var(--gold)}
 .chip.main{background:linear-gradient(180deg,#fff,#eadfff);color:#140a22;border-color:#fff}
-#panel input[type=text]{flex:1;min-width:170px;font:600 15px var(--body);color:var(--text);background:rgba(0,0,0,.35);border:1px solid var(--edge);border-radius:14px;padding:10px 12px}
+#panel input[type=text]{flex:1;min-width:170px;font:600 16px var(--body);color:var(--text);background:rgba(0,0,0,.35);border:1px solid var(--edge);border-radius:14px;padding:10px 12px}
 #panel label{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:10px;flex:1;min-width:190px}
 #panel input[type=range]{flex:1;accent-color:#ff4dd8}
 #panel .hint{font-size:12.5px;color:var(--muted);line-height:1.5;margin:8px 0 0}
@@ -164,6 +168,7 @@ html,body{height:100%;margin:0;background:var(--ink);color:var(--text);font-fami
     <div class="chip-s glass"><svg viewBox="0 0 24 24" fill="#ff4dd8"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.5 3 4.5 6.9 4.5c2.2 0 3.8 1.2 5.1 3 1.3-1.8 2.9-3 5.1-3 3.9 0 6 4 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg><span id="likes">0</span></div>
     <div class="chip-s glass"><span id="songName">Neon Armata</span><div class="bar"><i id="prog"></i></div></div>
   </div>
+  <div class="howto"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.5 3 4.5 6.9 4.5c2.2 0 3.8 1.2 5.1 3 1.3-1.8 2.9-3 5.1-3 3.9 0 6 4 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg><span id="howto">Every like drops a note with your name</span></div>
 </div>
 <div id="combo"><b id="comboN">0</b><small>combo</small></div>
 <div id="gifts"></div>
@@ -216,7 +221,7 @@ html,body{height:100%;margin:0;background:var(--ink);color:var(--text);font-fami
 <div id="start">
   <div class="card glass">
     <h1 class="logo">Hero Music <span>LIVE</span></h1>
-    <p>Every like drops a note with your name on it. Gifts unleash note storms: the bigger the gift, the harder it gets. The game never misses.</p>
+    <p>Like the LIVE to drop a note with your name on it. Send a gift to unleash a note storm: the bigger the gift, the harder the song. Try to make me miss!</p>
     <div class="now" id="startSong">Neon Armata<small>kuskoooo</small></div>
     <button class="btn" id="go" disabled>Start the show</button>
     <div id="status">Reading the song…</div>
@@ -767,6 +772,13 @@ const cat=(function(){
   }
   return{say,show(on){enabled=on;el.classList.toggle('on',on);if(!on){q.length=0;bub.classList.remove('on');}},sound(on){sound=on;},start(){el.classList.add('on');armIdle();}};
 })();
+
+/* ---------- istruzioni per gli spettatori ---------- */
+const HOWTO=['Every like drops a note with your name','Send a gift to unleash a note storm','Bigger gift = harder song','Follow to drop a double note','Try to make me miss!'];
+let howI=0;
+setInterval(()=>{const el=$('howto');howI=(howI+1)%HOWTO.length;
+  el.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-6px)'}],{duration:220,fill:'forwards'}).onfinish=()=>{el.textContent=HOWTO[howI];
+  el.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:260,fill:'forwards'});};},3800);
 
 /* ---------- HUD ---------- */
 let combo=0,score=0,heat=0,flash=0,dispScore=-1,dispCombo=-1,dispLikes=-1,lastMile=0;

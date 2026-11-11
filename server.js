@@ -50,7 +50,7 @@ function stop() {
 function scheduleRetry() {
   clearTimeout(retryTimer);
   if (!watching || wss.clients.size === 0) return;
-  retryTimer = setTimeout(() => watch(watching, true), 20000);
+  retryTimer = setTimeout(() => watch(watching, true), 10000);
 }
 
 async function watch(username, isRetry) {
@@ -62,6 +62,7 @@ async function watch(username, isRetry) {
   const conn = new TikTokLiveConnection(username, {
     enableExtendedGiftInfo: true,
     processInitialData: false,
+    fetchRoomInfoOnConnect: false,
     signApiKey: process.env.EULER_API_KEY || undefined,
   });
   tt = conn;
@@ -91,7 +92,7 @@ async function watch(username, isRetry) {
     const msg = String(e?.message || e);
     const offline = e?.name === 'UserOfflineError' || /offline|not live|isn't live|is not online/i.test(msg);
     console.log('[connect failed]', msg);
-    status('offline', offline ? 'Waiting for @' + username + ' to go LIVE…' : 'Can’t see @' + username + '’s LIVE yet. Checking again every 20 seconds…');
+    status('offline', offline ? 'Waiting for @' + username + ' to go LIVE…' : 'Can’t see @' + username + '’s LIVE yet. Checking again every 10 seconds…');
     scheduleRetry();
   }
 }
