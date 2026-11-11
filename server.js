@@ -60,7 +60,7 @@ async function watch(username, isRetry) {
   stop();
   watching = username;
   const conn = new TikTokLiveConnection(username, {
-    enableExtendedGiftInfo: true,
+    enableExtendedGiftInfo: false,
     processInitialData: false,
     fetchRoomInfoOnConnect: false,
     signApiKey: process.env.EULER_API_KEY || undefined,
@@ -92,7 +92,8 @@ async function watch(username, isRetry) {
     const msg = String(e?.message || e);
     const offline = e?.name === 'UserOfflineError' || /offline|not live|isn't live|is not online/i.test(msg);
     console.log('[connect failed]', msg);
-    status('offline', offline ? 'Waiting for @' + username + ' to go LIVE…' : 'Can’t see @' + username + '’s LIVE yet. Checking again every 10 seconds…');
+    const why = msg.replace(/https?:\/\/\S+/g, '').replace(/\s+/g, ' ').trim().slice(0, 160);
+    status('offline', (offline ? 'Waiting for @' + username + ' to go LIVE…' : 'Can’t connect to @' + username + '’s LIVE yet, retrying every 10 seconds.') + ' Reason: ' + why);
     scheduleRetry();
   }
 }
